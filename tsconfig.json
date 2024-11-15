@@ -28,5 +28,14 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+
+  // To fix vscode issue with both jasmine and cypress tests: https://github.com/cypress-io/cypress/issues/7552
+  "include": [
+    "src",
+    "node_modules/cypress"
+  ],
+  "exclude": [
+    "node_modules/cypress"
+  ]
 }
