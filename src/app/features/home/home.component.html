@@ -15,7 +15,7 @@
 }
 
 <p-dialog header="Edit Profile" [modal]="true" [draggable]="false" [resizable]="false" [closable]="false" [blockScroll]="true" [visible]="visible()">
-    <div class="flex justify-content-end gap-2">
+    <div class="button-container">
         <p-button label="Cancel" severity="secondary" (onClick)="visible.set(false)" />
         <p-button label="Save" (onClick)="visible.set(false)" />
     </div>

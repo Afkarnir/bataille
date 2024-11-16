@@ -4,6 +4,7 @@ import { GetGames } from '../../core/states/game/game.actions';
 import { GameState } from '../../core/states/game/game.state';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { GameCardComponent } from './game-card/game-card.component';
 
@@ -13,6 +14,7 @@ import { GameCardComponent } from './game-card/game-card.component';
   imports: [
     ProgressSpinnerModule,
     ButtonModule,
+    DialogModule,
     InputTextModule,
     GameCardComponent,
   ],
@@ -25,6 +27,7 @@ export class HomeComponent {
   games = select(GameState.getGames);
   loading = select(GameState.getLoading);
 
+  visible = signal(false);
 
   constructor() {
     afterNextRender(() => {
