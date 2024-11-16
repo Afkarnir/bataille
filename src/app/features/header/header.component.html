@@ -9,7 +9,7 @@
 <app-dialog [visible]="visible()" [header]="'settings.title' | translate">
     <div>
         <h4>{{ 'settings.language' | translate }}</h4>
-        <p-dropdown [options]="langs()" optionLabel="label" (onChange)="setLang($event)" />
+        <p-dropdown appendTo="body" [options]="langs()" optionLabel="label" (onChange)="setLang($event)" />
     </div>
     
     <div>
