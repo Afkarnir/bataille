@@ -1,1 +1,22 @@
-<p>home works!</p>
+<h1 data-testid="title">Jeu de bataille</h1>
+@if (loading()) {
+    <p-progressSpinner ariaLabel="loading" />
+} @else {
+    <div class="card">
+        <p-button data-testid="new-game-button">Nouvelle partie</p-button>
+
+        <h2>Liste des parties</h2>
+        <div class="game-container">
+            @for (game of games(); track game.id) {
+                <app-game-card [game]="game"></app-game-card>
+            }
+        </div>
+    </div>
+}
+
+<p-dialog header="Edit Profile" [modal]="true" [draggable]="false" [resizable]="false" [closable]="false" [blockScroll]="true" [visible]="visible()">
+    <div class="flex justify-content-end gap-2">
+        <p-button label="Cancel" severity="secondary" (onClick)="visible.set(false)" />
+        <p-button label="Save" (onClick)="visible.set(false)" />
+    </div>
+</p-dialog>
