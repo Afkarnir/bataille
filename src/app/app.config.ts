@@ -5,7 +5,7 @@ import { routes } from './app.routes';
 import { withNgxsReduxDevtoolsPlugin } from '@ngxs/devtools-plugin';
 import { provideStore } from '@ngxs/store';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { authenticationInterceptor } from './core/interceptors/authentication.interceptor';
+import { authenticationInterceptor } from './core/interceptors/authentication/authentication.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
