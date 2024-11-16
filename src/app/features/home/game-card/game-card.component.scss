@@ -1,0 +1,25 @@
+:host {
+    padding: 16px;
+    border: 1px solid var(--surface-border);
+    border-radius: 8px;
+}
+
+h3 {
+    margin-bottom: 24px;
+}
+
+h4 {
+    margin-bottom: 16px;
+}
+
+app-icon {
+    color: gold;
+}
+
+.score-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 8px;
+}

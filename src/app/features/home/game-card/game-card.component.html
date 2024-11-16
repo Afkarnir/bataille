@@ -1,0 +1,12 @@
+<h3>Partie {{ game().id }}</h3>
+
+<h4>Scores</h4>
+@for (score of game().scores; track score.playerId) {
+    <div class="score-container">
+        <p>{{ getPlayerName(score.playerId) | titlecase }}: {{ score.score }}</p>
+        
+        @if (isWinner(score.score, game().scores)) {
+            <app-icon filled>kid_star</app-icon>
+        }
+    </div>
+}
