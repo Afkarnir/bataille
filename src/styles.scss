@@ -1,3 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 @import "primeng/resources/themes/lara-dark-purple/theme.css";
 @import "primeng/resources/primeng.css";
+@import 'material-symbols';
+
+html, body { min-height: 100vh; }
+
+body {
+    margin: unset;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: unset;
+    padding: unset;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+
+    &.filled {
+        font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+    }
+}
