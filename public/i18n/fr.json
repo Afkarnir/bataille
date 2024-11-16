@@ -24,6 +24,10 @@
     "actions": {
         "cancel": "Annuler",
         "save": "Enregistrer",
-        "close": "Fermer"
+        "close": "Fermer",
+        "retry": "Réessayer"
+    },
+    "error": {
+        "title": "Une erreur est survenue"
     }
 }

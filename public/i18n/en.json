@@ -24,6 +24,10 @@
     "actions": {
         "cancel": "Cancel",
         "save": "Save",
-        "close": "Close"
+        "close": "Close",
+        "retry": "Retry"
+    },
+    "error": {
+        "title": "An error occurred"
     }
 }
