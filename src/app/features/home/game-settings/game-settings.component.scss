@@ -5,6 +5,12 @@ label {
     margin: 16px 0;
 }
 
+.option-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .error {
     color: red;
 

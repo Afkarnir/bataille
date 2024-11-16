@@ -6,7 +6,16 @@
             <ng-container [formGroupName]="$index">
                 <label>
                     <span>{{ 'player.id' | translate: { id: $index + 1 } }}</span>
-                    <p-dropdown [style]="{ width: '100%' }" appendTo="body" showClear [options]="selectablePlayers()" optionLabel="name" optionValue="id" formControlName="player" (onChange)="setValidators($index)" />
+                    <p-dropdown [style]="{ width: '100%' }" appendTo="body" showClear [options]="selectablePlayers()" optionLabel="name" optionValue="id" formControlName="player" (onChange)="setValidators($index)">
+                        <ng-template let-player pTemplate="item">
+                            <div class="option-container">
+                                @if (player.id === -1) {
+                                    <app-icon>add</app-icon>
+                                }
+                                <span>{{ player.name }}</span>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
                 </label>
     
                 @if (getlistPlayer($index).value === -1) {
@@ -16,6 +25,10 @@
                     </label>
                 }
             </ng-container>
+
+            @if(!$last) {
+                <p-divider />
+            }
         }
     </ng-container>
 

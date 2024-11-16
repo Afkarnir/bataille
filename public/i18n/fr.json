@@ -11,7 +11,7 @@
     "player": {
         "singular": "Joueur",
         "plural": "Joueurs",
-        "new": "Nouveau joueur",
+        "new": "Nouveau nom",
         "id": "Joueur n°{{id}}"
     },
     "score": {

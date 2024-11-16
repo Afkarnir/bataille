@@ -3,12 +3,11 @@ import { State, Selector, Action, StateContext, Store } from '@ngxs/store';
 import { Game, Score } from '../../models/game';
 import { CreateGame, GetGames } from './game.actions';
 import { ApiService } from '../../services/api/api.service';
-import { catchError, forkJoin, takeLast, tap, throwError } from 'rxjs';
+import { catchError, tap, throwError } from 'rxjs';
 import { PlayerState } from '../player/player.state';
 import { Player } from '../../models/player';
 import { CreatePlayer } from '../player/player.actions';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ApiError } from '../../models/api';
 import { Router } from '@angular/router';
 
 export interface GameStateModel {
@@ -68,7 +67,7 @@ export class GameState {
         playersToCreate.forEach((playerToCreate: Partial<Player>) => actions.push(new CreatePlayer(playerToCreate.name as string)));
 
         return ctx.dispatch(actions).pipe(
-            tap(() => {
+            tap(async () => {
                 const players = this.store.selectSnapshot(PlayerState.getPlayers);
 
                 const scores: Score[] = players
@@ -76,8 +75,9 @@ export class GameState {
                     .map(player => ({ playerId: player.id, score: 0 }) as Score)
                     .concat(selectedPlayers.map(selectedPlayer => ({ playerId: selectedPlayer.id, score: 0 }) as Score));
 
-                ctx.patchState({ current: { playerCount: players.length, scores }, loading: false });
-                this.router.navigate(['game']);
+                ctx.patchState({ current: { playerCount: players.length, scores } });
+                await this.router.navigate(['game']);
+                ctx.patchState({ loading: false });
             }),
             catchError((error: HttpErrorResponse) => {
                 ctx.patchState({ loading: false });

@@ -12,8 +12,9 @@ import { Player } from '../../../core/models/player';
 import { CreateGame } from '../../../core/states/game/game.actions';
 import { GameState } from '../../../core/states/game/game.state';
 import { catchError, throwError } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
 import { ApiError } from '../../../core/models/api';
+import { IconComponent } from '../../../shared/components/icon/icon.component';
+import { DividerModule } from 'primeng/divider';
 
 type PlayerListForm = {
   player: number;
@@ -29,6 +30,8 @@ type PlayerListForm = {
     ReactiveFormsModule,
     ButtonModule,
     InputTextModule,
+    IconComponent,
+    DividerModule,
   ],
   templateUrl: './game-settings.component.html',
   styleUrl: './game-settings.component.scss'
@@ -38,7 +41,7 @@ export class GameSettingsComponent {
   private players = select(PlayerState.getPlayers);
   private formBuilder = inject(FormBuilder);
   private translate = inject(TranslateService);
-  private newPlayerLabel = toSignal(this.translate.get('player.new'));
+  private newPlayerLabel = toSignal(this.translate.stream('player.new'));
 
   loading = select(GameState.getLoading);
   errorMessage = signal<string | null>(null);
@@ -50,15 +53,15 @@ export class GameSettingsComponent {
   signalForm = toSignal(this.form.valueChanges, { initialValue: this.form.value });
 
   selectablePlayers = computed(() => [
+    {
+      name: this.newPlayerLabel(),
+      id: -1,
+    },
     ...this.players()
       .map(player => ({
         ...player,
         disabled: !this.signalForm().list?.findIndex((listPlayer: PlayerListForm | null) => listPlayer?.player === player.id)
-      })),
-    {
-      name: this.newPlayerLabel(),
-      id: -1,
-    }
+      }))
 ]);
   
   playerCount = signal(2);
