@@ -1,0 +1,23 @@
+<h1 data-testid="title">{{ 'title' | translate }}</h1>
+
+<p-button class="settings-button" rounded text (onClick)="visible.set(true)">
+    <ng-template pTemplate="icon">
+        <app-icon filled>settings</app-icon>
+    </ng-template>
+</p-button>
+
+<app-dialog [visible]="visible()" [header]="'settings.title' | translate">
+    <div>
+        <h4>{{ 'settings.language' | translate }}</h4>
+        <p-dropdown [options]="langs()" optionLabel="label" (onChange)="setLang($event)" />
+    </div>
+    
+    <div>
+        <h4>{{ 'settings.fontSize' | translate }}</h4>
+        <p-slider [min]="12" [max]="28" [step]="4" [ngModel]="selectedFontSize()" (onChange)="setFontSize($event)" />
+    </div>
+
+    <div class="button-container">
+        <p-button [label]="'actions.close' | translate" (onClick)="visible.set(false)" />
+    </div>
+</app-dialog>

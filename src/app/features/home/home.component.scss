@@ -7,10 +7,6 @@
     padding: 24px;
 }
 
-h1, h2 {
-    text-align: center;
-}
-
 .card {
     width: 100%;
     padding: 32px;
@@ -27,6 +23,7 @@ h1, h2 {
 
     h2 {
         margin-bottom: 16px;
+        text-align: center;
     }
 
     p-button {
@@ -41,4 +38,9 @@ h1, h2 {
         justify-content: center;
         gap: 32px;
     }
+}
+
+.button-container {
+    display: flex;
+    gap: 16px;
 }

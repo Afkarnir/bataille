@@ -4,6 +4,7 @@ import { TitleCasePipe } from '@angular/common';
 import { PlayerState } from '../../../core/states/player/player.state';
 import { select } from '@ngxs/store';
 import { IconComponent } from '../../../shared/components/icon/icon.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-game-card',
@@ -11,6 +12,7 @@ import { IconComponent } from '../../../shared/components/icon/icon.component';
   imports: [
     TitleCasePipe,
     IconComponent,
+    TranslatePipe,
   ],
   templateUrl: './game-card.component.html',
   styleUrl: './game-card.component.scss'

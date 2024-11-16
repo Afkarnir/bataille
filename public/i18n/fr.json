@@ -1,0 +1,29 @@
+{
+    "title": "Jeu de bataille",
+    "game": {
+        "singular": "Partie",
+        "plural": "Parties",
+        "id": "Partie n°{{id}}",
+        "new": "Nouvelle partie",
+        "list": "Liste des parties"
+    },
+    "player": {
+        "singular": "Joueur",
+        "plural": "Joueurs",
+        "new": "Nouveau joueur"
+    },
+    "scores": {
+        "singular": "Score",
+        "plural": "Scores"
+    },
+    "settings": {
+        "title": "Paramètres",
+        "language": "Langue",
+        "fontSize": "Taille de la police"
+    },
+    "actions": {
+        "cancel": "Annuler",
+        "save": "Enregistrer",
+        "close": "Fermer"
+    }
+}

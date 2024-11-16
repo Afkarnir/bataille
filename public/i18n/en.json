@@ -1,0 +1,29 @@
+{
+    "title": "Snap game",
+    "game": {
+        "singular": "Game",
+        "plural": "Games",
+        "id": "Game n°{{id}}",
+        "new": "New game",
+        "list": "List of games"
+    },
+    "player": {
+        "singular": "Player",
+        "plural": "Players",
+        "new": "New player"
+    },
+    "scores": {
+        "singular": "Score",
+        "plural": "Scores"
+    },
+    "settings": {
+        "title": "Settings",
+        "language": "Language",
+        "fontSize": "Font size"
+    },
+    "actions": {
+        "cancel": "Cancel",
+        "save": "Save",
+        "close": "Close"
+    }
+}

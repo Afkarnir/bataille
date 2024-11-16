@@ -1,11 +1,10 @@
-<h1 data-testid="title">Jeu de bataille</h1>
 @if (loading()) {
     <p-progressSpinner ariaLabel="loading" />
 } @else {
     <div class="card">
-        <p-button data-testid="new-game-button">Nouvelle partie</p-button>
+        <p-button data-testid="new-game-button">{{ 'game.new' | translate }}</p-button>
 
-        <h2>Liste des parties</h2>
+        <h2>{{ 'game.list' | translate }}</h2>
         <div class="game-container">
             @for (game of games(); track game.id) {
                 <app-game-card [game]="game"></app-game-card>
