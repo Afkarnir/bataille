@@ -24,11 +24,11 @@ export class ApiService {
     return this.http.get<Game[]>(`${this.apiUrl}/games`);
   }
 
-  postPlayer(player: PlayerPayload) {
-    return this.http.post(`${this.apiUrl}/players`, player);
+  postPlayer(player: PlayerPayload): Observable<Player> {
+    return this.http.post<Player>(`${this.apiUrl}/players`, player);
   }
 
-  postGame(game: GamePayload) {
-    return this.http.post(`${this.apiUrl}/games`, game);
+  postGame(game: GamePayload): Observable<Game> {
+    return this.http.post<Game>(`${this.apiUrl}/games`, game);
   }
 }

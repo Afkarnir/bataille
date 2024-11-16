@@ -2,7 +2,7 @@
     <p-progressSpinner ariaLabel="loading" />
 } @else {
     <div class="card">
-        <p-button data-testid="new-game-button">{{ 'game.new' | translate }}</p-button>
+        <p-button data-testid="new-game-button" (onClick)="visible.set(true)">{{ 'game.new' | translate }}</p-button>
 
         <h2>{{ 'game.list' | translate }}</h2>
         <div class="game-container">
@@ -13,9 +13,6 @@
     </div>
 }
 
-<p-dialog header="Edit Profile" [modal]="true" [draggable]="false" [resizable]="false" [closable]="false" [blockScroll]="true" [visible]="visible()">
-    <div class="button-container">
-        <p-button label="Cancel" severity="secondary" (onClick)="visible.set(false)" />
-        <p-button label="Save" (onClick)="visible.set(false)" />
-    </div>
-</p-dialog>
+<app-dialog [visible]="visible()" [header]="'game.settings' | translate">
+    <app-game-settings (onCancel)="visible.set(false)"></app-game-settings>
+</app-dialog>

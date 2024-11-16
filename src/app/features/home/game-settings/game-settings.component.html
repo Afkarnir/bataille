@@ -1,0 +1,28 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h3>{{ 'player.plural' | translate }}</h3>
+
+    <ng-container formArrayName="list">
+        @for (form of list.controls; track $index) {
+            <ng-container [formGroupName]="$index">
+                <label>
+                    <span>{{ 'player.id' | translate: { id: $index + 1 } }}</span>
+                    <p-dropdown [style]="{ width: '100%' }" appendTo="body" showClear [options]="selectablePlayers()" optionLabel="name" optionValue="id" formControlName="player" (onChange)="setValidators($index)" />
+                </label>
+    
+                @if (getlistPlayer($index).value === -1) {
+                    <label>
+                        <span>{{ 'player.new' | translate }}</span>
+                        <input [style]="{ width: '100%' }" pInputText type="text" formControlName="new">
+                    </label>
+                }
+            </ng-container>
+        }
+    </ng-container>
+
+    <p class="error">{{ errorMessage() }}</p>
+
+    <div class="button-container">
+        <p-button severity="secondary" [label]="'actions.cancel' | translate" (onClick)="onCancel.emit()" [loading]="loading()" />
+        <p-button [label]="'actions.play' | translate" type="submit" [loading]="loading()" />
+    </div>
+</form>

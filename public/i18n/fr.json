@@ -5,12 +5,14 @@
         "plural": "Parties",
         "id": "Partie n°{{id}}",
         "new": "Nouvelle partie",
-        "list": "Liste des parties"
+        "list": "Liste des parties",
+        "settings": "Paramètres de la partie"
     },
     "player": {
         "singular": "Joueur",
         "plural": "Joueurs",
-        "new": "Nouveau joueur"
+        "new": "Nouveau joueur",
+        "id": "Joueur n°{{id}}"
     },
     "score": {
         "singular": "Score",
@@ -25,7 +27,8 @@
         "cancel": "Annuler",
         "save": "Enregistrer",
         "close": "Fermer",
-        "retry": "Réessayer"
+        "retry": "Réessayer",
+        "play": "Jouer"
     },
     "error": {
         "title": "Une erreur est survenue"

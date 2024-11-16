@@ -8,6 +8,8 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { GameCardComponent } from './game-card/game-card.component';
 import { TranslatePipe } from '@ngx-translate/core';
+import { DialogComponent } from '../../shared/components/dialog/dialog.component';
+import { GameSettingsComponent } from './game-settings/game-settings.component';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +21,8 @@ import { TranslatePipe } from '@ngx-translate/core';
     InputTextModule,
     GameCardComponent,
     TranslatePipe,
+    DialogComponent,
+    GameSettingsComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'

@@ -5,12 +5,14 @@
         "plural": "Games",
         "id": "Game n°{{id}}",
         "new": "New game",
-        "list": "List of games"
+        "list": "List of games",
+        "settings": "Game settings"
     },
     "player": {
         "singular": "Player",
         "plural": "Players",
-        "new": "New player"
+        "new": "New player",
+        "id": "Player n°{{id}}"
     },
     "score": {
         "singular": "Score",
@@ -25,7 +27,8 @@
         "cancel": "Cancel",
         "save": "Save",
         "close": "Close",
-        "retry": "Retry"
+        "retry": "Retry",
+        "play": "Play"
     },
     "error": {
         "title": "An error occurred"
