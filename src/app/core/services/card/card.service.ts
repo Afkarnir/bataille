@@ -13,13 +13,13 @@ export class CardService {
       deck.push(i);
     }
 
-    deck = this.shuffle<Card>(deck);
+    deck = this.shuffle(deck);
 
     return deck;
   }
 
   // implements Fisher-Yates shuffle algorithm because it is known to be faster and less biased than others
-  shuffle<T>(array: T[]): T[] {
+  shuffle(array: Card[]): Card[] {
     const sortedArray = [...array];
 
     for (let i = array.length - 1; i > 0; i--) {
@@ -35,4 +35,15 @@ export class CardService {
 
     return array;
   };
+
+  dealCards(deck: Card[], players: number): Card[][] {
+    const cardsPerPlayer = Math.floor(deck.length / players);
+    let playersCards: Card[][] = [];
+
+    for (let i = 0; i < players; i++) {
+      playersCards.push(deck.splice(0, cardsPerPlayer));
+    }
+
+    return playersCards;
+  }
 }

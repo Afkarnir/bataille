@@ -30,4 +30,13 @@ describe('CardService', () => {
 
     expect(arrayToShuffle).not.toEqual(sortedArray);
   });
+
+  it('should deal cards', () => {
+    const deck = service.getNewDeck();
+    const dealedCards = service.dealCards(deck, 2);
+
+    expect(dealedCards.length).toBe(2);
+    expect(dealedCards[0].length).toBe(26);
+    expect(dealedCards[1].length).toBe(26);
+  })
 });
