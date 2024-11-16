@@ -9,6 +9,7 @@ import { PlayerState } from './core/states/player/player.state';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authenticationInterceptor } from './core/interceptors/authentication/authentication.interceptor';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import {provideTranslateService} from "@ngx-translate/core";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,5 +17,8 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideStore([GameState, PlayerState], withNgxsReduxDevtoolsPlugin({ disabled: !isDevMode() })),
     provideAnimations(),
+    provideTranslateService({
+      defaultLanguage: 'fr'
+    })
   ]
 };
