@@ -21,7 +21,8 @@
                 @if (getlistPlayer($index).value === -1) {
                     <label>
                         <span>{{ 'player.new' | translate }}</span>
-                        <input [style]="{ width: '100%' }" pInputText type="text" formControlName="new">
+                        <input [style]="{ width: '100%' }" pInputText type="text" formControlName="new" maxlength="20">
+                        <small>{{ 'player.max' | translate: { max: 20 } }}</small>
                     </label>
                 }
             </ng-container>

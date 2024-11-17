@@ -13,6 +13,7 @@
         "singular": "Player",
         "plural": "Players",
         "new": "New name",
+        "max": "The name must not exceed {{max}} characters",
         "id": "Player n°{{id}}",
         "winner": "Winner is {{name}} !",
         "draw": "Draw"

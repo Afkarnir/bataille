@@ -13,6 +13,7 @@
         "singular": "Joueur",
         "plural": "Joueurs",
         "new": "Nouveau nom",
+        "max": "Le nom ne doit pas dépasser {{max}} caractères",
         "id": "Joueur n°{{id}}",
         "winner": "Le gagnant est {{name}} !",
         "draw": "Match nul"
