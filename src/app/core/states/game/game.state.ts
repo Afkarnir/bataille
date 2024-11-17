@@ -1,20 +1,21 @@
 import { inject, Injectable } from '@angular/core';
 import { State, Selector, Action, StateContext, Store } from '@ngxs/store';
-import { Game, Score } from '../../models/game';
+import { Game } from '../../models/game';
 import { CreateGame, GetGames } from './game.actions';
 import { ApiService } from '../../services/api/api.service';
 import { catchError, tap, throwError } from 'rxjs';
 import { PlayerState } from '../player/player.state';
-import { Player } from '../../models/player';
+import { Player, PlayerInGame } from '../../models/player';
 import { CreatePlayer } from '../player/player.actions';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { CardService } from '../../services/card/card.service';
+import { Deck } from '../../models/card';
 
 export interface GameStateModel {
     list: Game[];
     current: {
-        playerCount: number;
-        scores: Score[]
+        playersInGame: PlayerInGame[]
     } | null;
     loading: boolean;
 } 
@@ -32,6 +33,7 @@ export class GameState {
     private api = inject(ApiService);
     private store = inject(Store);
     private router = inject(Router);
+    private cardService = inject(CardService);
 
     @Selector()
     static getGames(state: GameStateModel) {
@@ -61,21 +63,28 @@ export class GameState {
         ctx.patchState({ loading: true });
 
         const playersToCreate = action.players.filter((player: Partial<Player>) => !!player.name);
-        const selectedPlayers = action.players.filter((player: Partial<Player>) => !!player.id);
+        const selectedPlayersId = action.players.filter((player: Partial<Player>) => !!player.id);
 
-        let actions: CreatePlayer[] = [];
-        playersToCreate.forEach((playerToCreate: Partial<Player>) => actions.push(new CreatePlayer(playerToCreate.name as string)));
+        const actions: CreatePlayer[] = playersToCreate.map((playerToCreate: Partial<Player>) => new CreatePlayer(playerToCreate.name as string));
 
         return ctx.dispatch(actions).pipe(
             tap(async () => {
                 const players = this.store.selectSnapshot(PlayerState.getPlayers);
 
-                const scores: Score[] = players
-                    .filter(player => playersToCreate.map(createdPlayer => createdPlayer.name).includes(player.name))
-                    .map(player => ({ playerId: player.id, score: 0 }) as Score)
-                    .concat(selectedPlayers.map(selectedPlayer => ({ playerId: selectedPlayer.id, score: 0 }) as Score));
+                const selectedPlayers = players
+                    .filter(player => {
+                        const isSelected = selectedPlayersId.map(selectedPlayer => selectedPlayer.id).includes(player.id);
+                        const isCreated = playersToCreate.map(createdPlayer => createdPlayer.name).includes(player.name);
+                        return isSelected || isCreated;
+                    });
 
-                ctx.patchState({ current: { playerCount: players.length, scores } });
+                const deck = this.cardService.getNewShuffledDeck();
+                const dealedDeck = this.cardService.dealDecks(deck, selectedPlayers.length);
+
+                const playersInGame: PlayerInGame[] = selectedPlayers
+                    .map((player: Player, index: number) => ({ playerId: player.id, playerName: player.name, deck: dealedDeck[index], score: 0 }));
+
+                ctx.patchState({ current: { playersInGame: playersInGame } });
                 await this.router.navigate(['game']);
                 ctx.patchState({ loading: false });
             }),
