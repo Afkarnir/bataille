@@ -1,0 +1,16 @@
+<div class="flip-card" [class.flip]="hasPlayed()">
+    <div class="flip-card-inner">
+
+        <div class="flip-card-front">
+            <p-button [disabled]="disabled()" (onClick)="playCard()">
+                {{ 'actions.play' | translate }}
+            </p-button>
+        </div>
+
+        <div class="flip-card-back">
+            @if (hasPlayed()) {
+                <p>{{ card() }}</p>
+            }
+        </div>
+    </div>
+</div>

@@ -2,13 +2,4 @@
 
 <h2>{{ 'score.singular' | translate }}: {{ player().score }}</h2>
 
-@if (hasPlayed()) {
-    <div>
-        <!-- TODO : Custom component with animations -->
-        {{ cardPlayed() }}
-    </div>
-}
-
-<p-button [disabled]="playerTurn() !== player().playerId || game()?.isInPause" (onClick)="playCard()">
-    {{ 'actions.play' | translate }}
-</p-button>
+<app-card #playerCardRef [card]="card()" [hasPlayed]="hasPlayed()" [disabled]="playerTurn() !== player().playerId || !!game()?.isInPause"></app-card>
