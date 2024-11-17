@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { State, Selector, Action, StateContext, Store } from '@ngxs/store';
 import { Game, GamePayload } from '../../models/game';
-import { CreateGame, EndGame, EndTurn, GetGames, LeaveGame, PlayCard, SaveGame, StartGame } from './game.actions';
+import { CreateGame, EndGame, EndTurn, GetGames, LeaveGame, PlayCard, SaveGame, StartGame, UpdateDecks } from './game.actions';
 import { ApiService } from '../../services/api/api.service';
 import { catchError, switchMap, tap, throwError } from 'rxjs';
 import { PlayerState } from '../player/player.state';
@@ -214,34 +214,56 @@ export class GameState {
         let winner: PlayerInGame = {} as PlayerInGame;
 
         newPlayersInGame = newPlayersInGame.map((player: PlayerInGame) => {
-            player.deck = player.deck.splice(1, player.deck.length);
-
             if(player.playerId === winnerId) {
                 player.score += 1;
                 winner = player;
             }
-
             return player;
         });
 
         ctx.patchState({
             current: {
                 ...state(),
-                playersInGame: newPlayersInGame,
                 turnWinner: winner,
             }
         });
 
-        if(newPlayersInGame[0].deck.length !== 0) {
-            setTimeout(() => ctx.patchState({
+        
+        setTimeout(() => {
+            ctx.patchState({
                 current: {
                     ...state(),
                     cardsInPlay: [],
                     turnWinner: null,
                     isInPause: false,
                 }
-            }), environment.waitBetweenTurns);
-        } else {
+            });
+
+            ctx.dispatch(new UpdateDecks());
+
+        }, environment.waitBetweenTurns);
+    }
+
+    @Action(UpdateDecks)
+    updateDecks(ctx: StateContext<GameStateModel>) {
+        const state = ctx.getState().current;
+        if(!state) throw new Error('No game in progress');
+
+        let newPlayersInGame = [...state.playersInGame];
+
+        newPlayersInGame = newPlayersInGame.map((player: PlayerInGame) => {
+            player.deck = player.deck.splice(1, player.deck.length);
+            return player;
+        });
+
+        ctx.patchState({
+            current: {
+                ...state,
+                playersInGame: newPlayersInGame,
+            }
+        });
+
+        if(newPlayersInGame[0].deck.length === 0) {
             ctx.dispatch(new EndGame());
         }
     }

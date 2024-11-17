@@ -34,3 +34,7 @@ export class SaveGame {
 export class LeaveGame {
     static readonly type = '[Game] Leave game';
 }
+
+export class UpdateDecks {
+    static readonly type = '[Game] update decks';
+}
