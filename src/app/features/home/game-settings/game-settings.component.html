@@ -36,7 +36,7 @@
     <p class="error">{{ errorMessage() }}</p>
 
     <div class="button-container">
-        <p-button severity="secondary" [label]="'actions.cancel' | translate" (onClick)="onCancel.emit()" [loading]="loading()" />
+        <p-button severity="secondary" [label]="'actions.cancel' | translate" (onClick)="cancel()" [loading]="loading()" />
         <p-button [label]="'actions.play' | translate" type="submit" [loading]="loading()" />
     </div>
 </form>

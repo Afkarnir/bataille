@@ -62,7 +62,7 @@ export class GameSettingsComponent {
         ...player,
         disabled: !this.signalForm().list?.findIndex((listPlayer: PlayerListForm | null) => listPlayer?.player === player.id)
       }))
-]);
+  ]);
   
   playerCount = signal(2);
   onCancel = output();
@@ -107,8 +107,10 @@ export class GameSettingsComponent {
     ).subscribe();
   }
 
-  createPlayer(name: string) {
-    this.store.dispatch(new CreatePlayer(name));
+  cancel() {
+    this.form.reset();
+    this.form.markAsPristine();
+    this.onCancel.emit();
   }
 
   // Mark all form controls as dirty https://stackoverflow.com/questions/54943261/reactive-forms-mark-dirty-all-controls-in-form-group
