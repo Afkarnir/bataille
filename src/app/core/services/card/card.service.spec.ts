@@ -14,7 +14,7 @@ describe('CardService', () => {
   });
 
   it('should get new deck of 52 cards', () => {
-    expect(service.getNewDeck().length).toBe(52);
+    expect(service.getNewShuffledDeck().length).toBe(52);
   });
 
   it('should be shuffled', () => {
@@ -32,8 +32,8 @@ describe('CardService', () => {
   });
 
   it('should deal cards', () => {
-    const deck = service.getNewDeck();
-    const dealedCards = service.dealCards(deck, 2);
+    const deck = service.getNewShuffledDeck();
+    const dealedCards = service.dealDecks(deck, 2);
 
     expect(dealedCards.length).toBe(2);
     expect(dealedCards[0].length).toBe(26);

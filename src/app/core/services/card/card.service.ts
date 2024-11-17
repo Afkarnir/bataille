@@ -6,7 +6,7 @@ import { Deck, Card } from '../../models/card';
 })
 export class CardService {
 
-  getNewDeck(): Deck {
+  getNewShuffledDeck(): Deck {
     let deck: Card[] = [];
 
     for (let i = 0; i < 52; i++) {
@@ -36,11 +36,11 @@ export class CardService {
     return array;
   };
 
-  dealCards(deck: Card[], players: number): Card[][] {
-    const cardsPerPlayer = Math.floor(deck.length / players);
-    let playersCards: Card[][] = [];
+  dealDecks(deck: Card[], playersCount: number): Deck[] {
+    const cardsPerPlayer = Math.floor(deck.length / playersCount);
+    let playersCards: Deck[] = [];
 
-    for (let i = 0; i < players; i++) {
+    for (let i = 0; i < playersCount; i++) {
       playersCards.push(deck.splice(0, cardsPerPlayer));
     }
 
