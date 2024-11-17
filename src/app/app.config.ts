@@ -21,7 +21,7 @@ export const appConfig: ApplicationConfig = {
     provideStore(
       [GameState, PlayerState, ErrorState],
       withNgxsReduxDevtoolsPlugin({ disabled: !isDevMode() }),
-      withNgxsStoragePlugin({ keys: '*' })
+      withNgxsStoragePlugin({ keys: ['player', 'game'] })
     ),
     provideHttpClient(withInterceptors([authenticationInterceptor, errorInterceptor])),
     provideAnimations(),
