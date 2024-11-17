@@ -1,1 +1,28 @@
-<p>game works!</p>
+@if (game(); as game) {
+    @for (player of game.playersInGame; track $index) {
+        <app-player [player]="player" [playerTurn]="game.playerTurn"></app-player>
+    }
+
+} @else {
+    <p-progressSpinner ariaLabel="loading" />
+}
+
+@if (game()?.gameWinners; as winners) {
+    <app-dialog [visible]="visible()" [header]="'game.over' | translate">
+        @if (winners.length === 1) {
+            <h1 class="winner">{{ 'player.winner' | translate: { name: winners[0].playerName | titlecase } }}</h1>
+
+            <app-score-card [playerName]="winners[0].playerName" [score]="winners[0].score" />
+        } @else {
+            <h1>{{ 'player.draw' | translate }}</h1>
+            @for (winner of winners; track $index) {
+                <app-score-card [playerName]="winner.playerName" [score]="winner.score" />
+            }
+        }
+        
+        <div class="button-container">
+            <p-button severity="danger" [label]="'actions.leave' | translate" (onClick)="leave()" [loading]="loading()" />
+            <p-button [label]="'actions.save' | translate" (onClick)="save()" [loading]="loading()" />
+        </div>
+    </app-dialog>
+}

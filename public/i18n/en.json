@@ -6,13 +6,16 @@
         "id": "Game n°{{id}}",
         "new": "New game",
         "list": "List of games",
-        "settings": "Game settings"
+        "settings": "Game settings",
+        "over": "Game over"
     },
     "player": {
         "singular": "Player",
         "plural": "Players",
         "new": "New name",
-        "id": "Player n°{{id}}"
+        "id": "Player n°{{id}}",
+        "winner": "Winner is {{name}} !",
+        "draw": "Draw"
     },
     "score": {
         "singular": "Score",
@@ -28,7 +31,8 @@
         "save": "Save",
         "close": "Close",
         "retry": "Retry",
-        "play": "Play"
+        "play": "Play",
+        "leave": "Leave"
     },
     "error": {
         "title": "An error occurred"

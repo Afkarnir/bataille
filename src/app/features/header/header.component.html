@@ -18,6 +18,9 @@
     </div>
 
     <div class="button-container">
+        @if (isCurrentGame()) {
+            <p-button severity="danger" [label]="'actions.leave' | translate" (onClick)="leaveGame()" />
+        }
         <p-button [label]="'actions.close' | translate" (onClick)="visible.set(false)" />
     </div>
 </app-dialog>

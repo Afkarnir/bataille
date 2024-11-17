@@ -14,3 +14,8 @@ export interface PlayerInGame extends Score {
     playerName: string;
     deck: Deck;
 };
+
+export type PlayerCard = {
+    playerId: number;
+    card: number;
+}

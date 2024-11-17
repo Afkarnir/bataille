@@ -3,9 +3,7 @@ export type Game = {
     scores: Score[]
 }
 
-export type GamePayload = {
-    items: Score[];
-}
+export type GamePayload = Score[];
 
 export type Score = {
     playerId: number,

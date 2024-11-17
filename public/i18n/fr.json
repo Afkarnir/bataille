@@ -6,13 +6,16 @@
         "id": "Partie n°{{id}}",
         "new": "Nouvelle partie",
         "list": "Liste des parties",
-        "settings": "Paramètres de la partie"
+        "settings": "Paramètres de la partie",
+        "over": "Partie terminée"
     },
     "player": {
         "singular": "Joueur",
         "plural": "Joueurs",
         "new": "Nouveau nom",
-        "id": "Joueur n°{{id}}"
+        "id": "Joueur n°{{id}}",
+        "winner": "Le gagnant est {{name}} !",
+        "draw": "Match nul"
     },
     "score": {
         "singular": "Score",
@@ -28,7 +31,8 @@
         "save": "Enregistrer",
         "close": "Fermer",
         "retry": "Réessayer",
-        "play": "Jouer"
+        "play": "Jouer",
+        "leave": "Quitter"
     },
     "error": {
         "title": "Une erreur est survenue"

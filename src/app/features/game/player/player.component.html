@@ -1,0 +1,14 @@
+<h1>{{ player().playerName | titlecase }}</h1>
+
+<h2>{{ 'score.singular' | translate }}: {{ player().score }}</h2>
+
+@if (hasPlayed()) {
+    <div>
+        <!-- TODO : Custom component with animations -->
+        {{ cardPlayed() }}
+    </div>
+}
+
+<p-button [disabled]="playerTurn() !== player().playerId || game()?.isInPause" (onClick)="playCard()">
+    {{ 'actions.play' | translate }}
+</p-button>

@@ -46,4 +46,8 @@ export class CardService {
 
     return playersCards;
   }
+
+  compareCards(card1: Card, card2: Card): Card {
+    return card1 > card2 ? card1 : card2;
+  }
 }
