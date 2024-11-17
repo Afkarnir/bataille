@@ -21,6 +21,7 @@
     "@angular/router": "^18.1.0",
     "@ngx-translate/core": "^16.0.3",
     "@ngxs/devtools-plugin": "^18.1.5",
+    "@ngxs/storage-plugin": "^18.1.5",
     "bataille": "file:",
     "material-symbols": "^0.27.0",
     "primeng": "^17.18.12",

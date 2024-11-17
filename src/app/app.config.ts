@@ -12,12 +12,17 @@ import { errorInterceptor } from './core/interceptors/error/error.interceptor';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {provideTranslateService} from "@ngx-translate/core";
 import { ErrorState } from './core/states/error/error.state';
+import { withNgxsStoragePlugin } from '@ngxs/storage-plugin';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideStore([GameState, PlayerState, ErrorState], withNgxsReduxDevtoolsPlugin({ disabled: !isDevMode() })),
+    provideStore(
+      [GameState, PlayerState, ErrorState],
+      withNgxsReduxDevtoolsPlugin({ disabled: !isDevMode() }),
+      withNgxsStoragePlugin({ keys: '*' })
+    ),
     provideHttpClient(withInterceptors([authenticationInterceptor, errorInterceptor])),
     provideAnimations(),
     provideTranslateService({
