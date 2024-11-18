@@ -25,13 +25,40 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+
+Cypress.Commands.add('createNewGame', () => {
+    cy.intercept('GET', `${Cypress.env().apiUrl}/games`, { fixture: 'games' }).as('games')
+    cy.intercept('GET', `${Cypress.env().apiUrl}/players`, { fixture: 'players' }).as('players')
+    
+    cy.visit('/')
+
+    cy.wait('@games')
+    cy.wait('@players')
+
+    cy.get('[data-testid="new-game-button"]').click()
+      
+    cy.get('[data-testid="player-dropdown"]')
+        .first()
+        .click()
+        .get('p-dropdownitem [aria-label="Test player 1"]')
+        .click()
+    
+    cy.get('[data-testid="player-dropdown"]')
+        .last()
+        .click()
+        .get('p-dropdownitem [aria-label="Test player 2"]')
+        .click()
+
+    cy.get('[data-testid="play"]')
+        .click()
+})
+
+declare namespace Cypress {
+    interface Chainable {
+        createNewGame(): Chainable<void>
+    //   login(email: string, password: string): Chainable<void>
+    //   drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
+    //   dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
+    //   visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
+    }
+}

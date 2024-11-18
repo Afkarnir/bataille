@@ -2,7 +2,7 @@
     <div class="flip-card-inner">
 
         <div class="flip-card-front">
-            <p-button [disabled]="disabled()" (onClick)="playCard()">
+            <p-button data-testid="play-button" [disabled]="disabled()" (onClick)="playCard()">
                 {{ 'actions.play' | translate }}
             </p-button>
         </div>

@@ -1,6 +1,6 @@
 @if (game(); as game) {
     @for (player of game.playersInGame; track $index) {
-        <app-player [player]="player" [playerTurn]="game.playerTurn"></app-player>
+        <app-player data-testid="player" [player]="player" [playerTurn]="game.playerTurn"></app-player>
     }
 
 } @else {
@@ -21,7 +21,7 @@
         }
         
         <div class="button-container">
-            <p-button severity="danger" [label]="'actions.leave' | translate" (onClick)="leave()" [loading]="loading()" />
+            <p-button data-testid="leave" severity="danger" [label]="'actions.leave' | translate" (onClick)="leave()" [loading]="loading()" />
             <p-button [label]="'actions.save' | translate" (onClick)="save()" [loading]="loading()" />
         </div>
     </app-dialog>
