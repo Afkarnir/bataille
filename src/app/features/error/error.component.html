@@ -1,11 +1,11 @@
 <div class="title-container">
     <app-icon filled>warning</app-icon>
-    <h2>{{ 'error.title' | translate }}</h2>
+    <h2 data-testid="error-title">{{ 'error.title' | translate }}</h2>
     <app-icon filled>warning</app-icon>
 </div>
 
-<p>{{ error()?.message }}</p>
+<p data-testid="error-message">{{ error()?.message }}</p>
 
-<p-button (onClick)="retry()">
+<p-button data-testid="retry" (onClick)="retry()">
     <span>{{ 'actions.retry' | translate }}</span>
 </p-button>
