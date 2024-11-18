@@ -7,5 +7,10 @@ export default defineConfig({
     },
 
     baseUrl: 'http://localhost:4200',
+
+    env: {
+      apiUrl: '/api/v1',
+      waitBetweenTurns: 2000,
+    },
   },
 });
