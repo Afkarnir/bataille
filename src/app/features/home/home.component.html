@@ -1,18 +1,18 @@
 @if (loading()) {
-    <p-progressSpinner ariaLabel="loading" />
+    <p-progressSpinner data-testid="loading" ariaLabel="loading" />
 } @else {
     <div class="card">
         <p-button data-testid="new-game-button" (onClick)="visible.set(true)">{{ 'game.new' | translate }}</p-button>
 
-        <h2>{{ 'game.list' | translate }}</h2>
-        <div class="game-container">
+        <h2 data-testid="game-list-title">{{ 'game.list' | translate }}</h2>
+        <div class="game-container" data-testid="game-list">
             @for (game of games(); track game.id) {
-                <app-game-card [game]="game"></app-game-card>
+                <app-game-card data-testid="game-card" [game]="game"></app-game-card>
             }
         </div>
     </div>
 }
 
 <app-dialog [visible]="visible()" [header]="'game.settings' | translate">
-    <app-game-settings (onCancel)="visible.set(false)"></app-game-settings>
+    <app-game-settings data-testid="game-settings" (onCancel)="visible.set(false)"></app-game-settings>
 </app-dialog>

@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" data-testid="new-game-settings">
     <h3>{{ 'player.plural' | translate }}</h3>
 
     <ng-container formArrayName="list">
@@ -6,7 +6,7 @@
             <ng-container [formGroupName]="$index">
                 <label>
                     <span>{{ 'player.id' | translate: { id: $index + 1 } }}</span>
-                    <p-dropdown [style]="{ width: '100%' }" appendTo="body" showClear filter filterBy="name"  [options]="selectablePlayers()" optionLabel="name" optionValue="id" formControlName="player" (onChange)="setValidators($index)">
+                    <p-dropdown data-testid="player-dropdown" [style]="{ width: '100%' }" appendTo="body" showClear filter filterBy="name"  [options]="selectablePlayers()" optionLabel="name" optionValue="id" formControlName="player" (onChange)="setValidators($index)">
                         <ng-template let-player pTemplate="item">
                             <div class="option-container">
                                 @if (player.id === -1) {
@@ -20,9 +20,9 @@
     
                 @if (getlistPlayer($index).value === -1) {
                     <label>
-                        <span>{{ 'player.new' | translate }}</span>
-                        <input [style]="{ width: '100%' }" pInputText type="text" formControlName="new" maxlength="20">
-                        <small>{{ 'player.max' | translate: { max: 20 } }}</small>
+                        <span data-testid="player-new-title">{{ 'player.new' | translate }}</span>
+                        <input data-testid="player-new-input" [style]="{ width: '100%' }" pInputText type="text" formControlName="new" maxlength="20">
+                        <small data-testid="player-new-info">{{ 'player.max' | translate: { max: 20 } }}</small>
                     </label>
                 }
             </ng-container>
@@ -33,10 +33,10 @@
         }
     </ng-container>
 
-    <p class="error">{{ errorMessage() }}</p>
+    <p class="error" data-testid="error">{{ errorMessage() }}</p>
 
     <div class="button-container">
-        <p-button severity="secondary" [label]="'actions.cancel' | translate" (onClick)="cancel()" [loading]="loading()" />
-        <p-button [label]="'actions.play' | translate" type="submit" [loading]="loading()" />
+        <p-button data-testid="close" severity="secondary" [label]="'actions.cancel' | translate" (onClick)="cancel()" [loading]="loading()" />
+        <p-button data-testid="play" [label]="'actions.play' | translate" type="submit" [loading]="loading()" />
     </div>
 </form>
