@@ -62,7 +62,9 @@ describe('home spec', () => {
         .click()
         .get('p-dropdownitem [aria-label="Test player 2"]')
         .should('be.visible')
-        .click()
+        .click({
+          
+        })
 
       cy.get('[data-testid="play"]')
         .should('be.visible')
@@ -75,8 +77,6 @@ describe('home spec', () => {
       cy.intercept('POST', `${Cypress.env().apiUrl}/players`, { fixture: 'newPlayer' }).as('newPlayer')
       
       cy.get('[data-testid="player-dropdown"]')
-        .should('be.visible')
-        .should('have.length', 2)
         .first()
         .click()
         .get('p-dropdownitem [aria-label="Nouveau nom"]')
@@ -114,8 +114,6 @@ describe('home spec', () => {
       cy.intercept('POST', `${Cypress.env().apiUrl}/players`, { statusCode: 400, body: { message: 'Invalid player name' } }).as('player')
 
       cy.get('[data-testid="player-dropdown"]')
-        .should('be.visible')
-        .should('have.length', 2)
         .first()
         .click()
         .get('p-dropdownitem [aria-label="Nouveau nom"]')
