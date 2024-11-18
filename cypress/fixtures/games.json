@@ -1,0 +1,41 @@
+[
+    {
+        "id": 1,
+        "scores": [
+            {
+                "playerId": 1,
+                "score": 1
+            },
+            {
+                "playerId": 2,
+                "score": 2
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "scores": [
+            {
+                "playerId": 1,
+                "score": 2
+            },
+            {
+                "playerId": 2,
+                "score": 1
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "scores": [
+            {
+                "playerId": 1,
+                "score": 2
+            },
+            {
+                "playerId": 2,
+                "score": 2
+            }
+        ]
+    }
+]
