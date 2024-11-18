@@ -1,6 +1,6 @@
-<h1 data-testid="title">{{ 'title' | translate }}</h1>
+<h1 data-testid="header-title">{{ 'title' | translate }}</h1>
 
-<p-button class="settings-button" rounded text (onClick)="visible.set(true)">
+<p-button data-testid="settings-button" class="settings-button" rounded text (onClick)="visible.set(true)">
     <ng-template pTemplate="icon">
         <app-icon filled>settings</app-icon>
     </ng-template>
@@ -8,19 +8,19 @@
 
 <app-dialog [visible]="visible()" [header]="'settings.title' | translate">
     <div>
-        <h4>{{ 'settings.language' | translate }}</h4>
-        <p-dropdown appendTo="body" [options]="langs()" optionLabel="label" (onChange)="setLang($event)" />
+        <h4 data-testid="language-title">{{ 'settings.language' | translate }}</h4>
+        <p-dropdown data-testid="language-dropdown" appendTo="body" [options]="langs()" optionLabel="label" (onChange)="setLang($event)" />
     </div>
     
     <div>
-        <h4>{{ 'settings.fontSize' | translate }}</h4>
-        <p-slider [min]="12" [max]="28" [step]="4" [ngModel]="selectedFontSize()" (onChange)="setFontSize($event)" />
+        <h4 data-testid="font-size">{{ 'settings.fontSize' | translate }}</h4>
+        <p-slider data-testid="font-size-slider" [min]="12" [max]="28" [step]="4" [ngModel]="selectedFontSize()" (onChange)="setFontSize($event)" />
     </div>
 
     <div class="button-container">
         @if (isCurrentGame()) {
-            <p-button severity="danger" [label]="'actions.leave' | translate" (onClick)="leaveGame()" />
+            <p-button data-testid="leave" severity="danger" [label]="'actions.leave' | translate" (onClick)="leaveGame()" />
         }
-        <p-button [label]="'actions.close' | translate" (onClick)="visible.set(false)" />
+        <p-button data-testid="close" [label]="'actions.close' | translate" (onClick)="visible.set(false)" />
     </div>
 </app-dialog>
